@@ -22,3 +22,7 @@ This repo contains the files that are are created with c or c++
 **without_main.c** is a program to run a program without using string "main" in main function in C language.
 
 ### ............................................. 
+
+**main_call.c** is a program to print the memory address of main in long unsigned form.
+
+### ............................................. 
