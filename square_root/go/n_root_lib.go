@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 // Optimization optimization options
 type Optimization struct {
 	InitialDivision bool
@@ -73,6 +75,16 @@ func nRoot(number float64, n int, optimization Optimization) (float64, int) {
 		// reduce the number of iterations by making the root value closer to original value
 		if (optimization.Average && powerFinal < number) || optimization.AverageForce {
 			root = (rootLastResult + root) / 2
+		}
+	}
+
+	// course corrections for situations when result got fixated due to number precision
+	// example: 1000000 with n = 6
+	if power(root, n) != number {
+		if power(math.Ceil(root), n) == number {
+			root = math.Ceil(root)
+		} else if power(math.Floor(root), n) == number {
+			root = math.Floor(root)
 		}
 	}
 	return rootResult()
